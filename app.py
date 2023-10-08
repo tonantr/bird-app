@@ -17,6 +17,11 @@ db.init_app(app)
 
 api = Api(app)
 
+class Home(Resource):
+    
+    def get(self):
+        return {'message': 'Welcome!'}, 200
+
 class Birds(Resource):
 
     def get(self):
@@ -29,5 +34,6 @@ class BirdByID(Resource):
         return make_response(jsonify(bird), 200)
 
 
+api.add_resource(Home, '/')
 api.add_resource(Birds, '/birds')
 api.add_resource(BirdByID, '/birds/<int:id>')
